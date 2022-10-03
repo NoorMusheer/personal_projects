@@ -1,0 +1,16 @@
+*{
+    margin:0 auto;
+}
+
+.header{
+    display:flex;
+    width:80%;
+}
+
+.image{
+    width:30%;
+}
+
+.btn{
+    size:300px;
+}
