@@ -2,15 +2,20 @@
     margin:0 auto;
 }
 
-.header{
-    display:flex;
-    width:80%;
+.container{
+    margin-top:3%;
+}
+.header-logo-img{
+    width:50%;
 }
 
-.image{
-    width:30%;
+.header-row{
+    border:1px #AE924F solid;
+    box-shadow: 3px 3px 10px #AE924F;
+    padding:1%;
 }
 
-.btn{
-    size:300px;
+a{
+    text-decoration: none;
+    color: #AE924F;
 }
