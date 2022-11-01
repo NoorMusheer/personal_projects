@@ -24,6 +24,7 @@
         </div>
         <div class="row main-body-row">
             <table>
+                <div class="row">Active Orders</div>
                 <thead>
                     <tr>
                         <th>Order No.</th>
@@ -35,18 +36,45 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {%for order in all_orders%}
+                    {%for active in active_orders%}
                     <tr>
-                        <td>{{order.id}}</td>
-                        <td>{{order.bride_id}}</td>
-                        <td>{{order.dress_id}}</td>
-                        <td>{{order.notes}}</td>
-                        <td>{{order.employee_id}}</td>
-                        <td>View/Edit  |  Archive</td>
+                        <td>{{active.id}}</td>
+                        <td>{{active.bride_id}}</td>
+                        <td>{{active.dress_id}}</td>
+                        <td>{{active.notes}}</td>
+                        <td>{{active.employee_id}}</td>
+                        <td>View/Edit  |  <a href="/archive_order/{{active.id}}">Archive</a></td>
                     </tr>
                     {%endfor%}
                 </tbody>
             </table>
+
+            <table>
+                <div class="row">Archived Orders</div>
+                <thead>
+                    <tr>
+                        <th>Order No.</th>
+                        <th>Bride</th>
+                        <th>Dress</th>
+                        <th>Order Notes</th>
+                        <th>Taken By</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for archived in archived_orders%}
+                    <tr>
+                        <td>{{archived.id}}</td>
+                        <td>{{archived.bride_id}}</td>
+                        <td>{{archived.dress_id}}</td>
+                        <td>{{archived.notes}}</td>
+                        <td>{{archived.employee_id}}</td>
+                        <td>View</td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+
         </div>
 
 
