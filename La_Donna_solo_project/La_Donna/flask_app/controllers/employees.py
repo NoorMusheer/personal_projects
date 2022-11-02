@@ -16,12 +16,13 @@ def validate_login_info():
         "password":request.form['password']
     }
     an_employee = employee.Employee.get_employee_by_email(login_data)
-    print("---AN EMPLOYEE VALUE ----", an_employee)
+    print(" ---- AN EMPLOYEE----", an_employee)
     if not employee.Employee.validate_login(login_data, an_employee):
         return redirect('/')
     session['id'] = an_employee['id']
     session['first_name']=an_employee['first_name']
     session['last_name']=an_employee['last_name']
+    session['permission']=an_employee['permission']
     return redirect('/dashboard')
 
 @app.route('/check_registration', methods=["POST"])
@@ -53,6 +54,20 @@ def user_dashborad():
 def employees():
     all_employees = employee.Employee.get_all_employees()
     return render_template('employees_list.html', all_employees = all_employees)
+
+@app.route('/forgot_login', methods=["POST"])
+def update_pw():
+    data = {
+        "email": request.form['email']
+    }
+    employee.Employee.reset_pw_request_message(data)
+    return redirect('/forgot_pw')
+
+@app.route('/forgot_pw')
+def req_pw_reset_page():
+    return render_template('forgot_login.html')
+
+
     
 @app.route('/new_employee')
 def add_new_empl_page():

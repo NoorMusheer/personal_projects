@@ -24,7 +24,7 @@
         </div>
         <div class="row main-body-row">
             <table>
-                <div class="row">Active Orders</div>
+                <div class="row"><h4>Active Orders</h4></div>
                 <thead>
                     <tr>
                         <th>Order No.</th>
@@ -43,14 +43,14 @@
                         <td>{{active.dress_id}}</td>
                         <td>{{active.notes}}</td>
                         <td>{{active.employee_id}}</td>
-                        <td>View/Edit  |  <a href="/archive_order/{{active.id}}">Archive</a></td>
+                        <td><a href="/orders_edit/{{active.id}}">View/Edit</a>  |  <a href="/archive_order/{{active.id}}">Archive</a></td>
                     </tr>
                     {%endfor%}
                 </tbody>
             </table>
-
+<div class="row row-spacer" style="height:500px"></div>
             <table>
-                <div class="row">Archived Orders</div>
+                <div class="row"><h4>Archived Orders</h4>(will auto-delete after being archived for 12 months)</div>
                 <thead>
                     <tr>
                         <th>Order No.</th>

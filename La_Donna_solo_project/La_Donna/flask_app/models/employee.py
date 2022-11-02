@@ -84,3 +84,8 @@ class Employee:
             flash("* Passwords do not match. Try again. ", "register")
             is_valid = False
         return is_valid
+
+    @staticmethod
+    def reset_pw_request_message(data):
+        flash("* Thank you. If your email address is found in our system, an email message will be sent to it with a link to where you can reset your password.", "update_pw")
+        return True

@@ -33,5 +33,18 @@ def add_order_to_db():
         "notes":request.form['notes'],
         "status":"active"
     }
+    m_data = {
+        "bride_id":request.form['bride_id'],
+        "height":request.form['m_height'],
+        "waist":request.form['m_waist'],
+    }
+    measurement.Measurement.add_measurement(m_data)
     order.Order.add_order_to_db(data)
     return redirect('/orders')
+
+@app.route('/orders_edit/<int:id>')
+def edit_orders(id):
+    selected_order  = order.Order.orders_by_id(id)
+    the_brides_id = selected_order['bride_id']
+    bride_measurements = measurement.Measurement.measurement_by_bride_id(the_brides_id)
+    return render_template ('orders_edit.html', order = selected_order, bride_m = bride_measurements)

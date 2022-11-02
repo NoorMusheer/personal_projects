@@ -8,6 +8,10 @@
 .header-logo-img{
     width:50%;
 }
+.measurement-container{
+    border: 1px solid #AE924F;
+    padding-bottom:15px;
+}
 
 .header-row{
     border:1px #AE924F solid;

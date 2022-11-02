@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename=('/css/style.css')) }}">
+
+    <title>Brides Info</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row header-row">
+            <div class ="col-6"><img src="/static/imgs/LaDonna_Header.png" alt="La Donna Logo" class="header-logo-img"></div>
+            <div class="col-4"></div>
+            <div class="col-2">Employees Only</div>
+        </div>
+        <div class="row navigation-row">
+            <div class="col-10"></div>
+            <div class="col-2">
+                <a href="/dashboard">Home</a>
+            </div>
+        </div>
+        <div class="row main-body-row">
+            <form action="/bride_update" method="POST">
+                <div class="form-input">
+                    <label>First Name:</label>
+                    <input type="text" name="fname" value="{{bride.first_name}}">
+                </div> 
+                <div class="form-input">
+                    <label>Last Name:</label>
+                    <input type="text" name="lname" value="{{bride.last_name}}">
+                </div>
+                <div class="form-input">
+                    <label>E-mail:</label>
+                    <input type="text" name="email" value="{{bride.email}}">
+                </div>
+                <div class="form-input">
+                    <label>Phone:</label>
+                    <input type="text" name="phone" value="{{bride.phone}}">
+                </div>
+                <div class="form-input">
+                    <label>Wedding Date:</label>
+                    <input type="date" name="wedding_date" value="{{bride.wedding_date}}">
+                </div>
+                <div class="form-input">
+                    <label>Notes:</label>
+                    <textarea name="other" id="bride_notes" rows="6" cols="80">{{bride.other}}</textarea>
+                </div>
+
+                {% if session.permission == 5 %}
+                <input type="submit" value="Add">
+                {%endif%}
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -24,3 +24,8 @@ def add_bride_to_db():
     bride.Bride.add_a_bride(data)
     return redirect('/brides')
 
+@app.route('/bride_edit/<int:id>')
+def edit_bride_page(id):
+    bride_info = bride.Bride.get_bride_by_id(id)
+    return render_template('brides_edit.html', bride = bride_info)
+

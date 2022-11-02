@@ -1,3 +1,4 @@
+from sqlite3 import connect
 from flask_app.config.mysqlconnection import connectToMySQL
 
 class Order:
@@ -18,6 +19,15 @@ class Order:
     def orders_by_status(cls, data):
         query = "SELECT * FROM orders WHERE status = %(status)s ;"
         return connectToMySQL(cls.DB).query_db(query, data)
+
+    @classmethod
+    def orders_by_id(cls, id):
+        data = {
+            "id":id,
+        }
+        query = "SELECT * FROM orders WHERE id = %(id)s ;"
+        result = connectToMySQL(cls.DB).query_db(query, data)
+        return result[0]
 
     @classmethod
     def update_status_to_archive(cls, id):
