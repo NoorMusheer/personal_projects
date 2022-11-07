@@ -48,3 +48,22 @@ def edit_orders(id):
     the_brides_id = selected_order['bride_id']
     bride_measurements = measurement.Measurement.measurement_by_bride_id(the_brides_id)
     return render_template ('orders_edit.html', order = selected_order, bride_m = bride_measurements)
+
+@app.route('/order_update/<int:id>', methods=['POST'])
+def update_order_form(id):
+    o_data = {
+        "id":id,
+        "bride_id":request.form['bride_id'],
+        "dress_id":request.form['dress_id'],
+        "order_notes":request.form['notes'],
+        "status":"active"
+    }
+    m_data={
+        "m_id":request.form['m_id'],
+        "bride_id":request.form['bride_id'],
+        "m_height":request.form['m_height'],
+        "m_waist":request.form['m_waist']
+    }
+    order.Order.update_order(o_data)
+    measurement.Measurement.update_measurements(m_data)
+    return redirect ('/orders')

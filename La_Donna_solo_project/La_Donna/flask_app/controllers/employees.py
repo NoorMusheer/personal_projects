@@ -1,6 +1,7 @@
 from flask_app import app
 from flask_app.models import bride, dress, employee, measurement, order
 from flask import render_template, redirect, request, session
+from flask_mail import Mail
 import random
 import string
 import smtplib
@@ -8,6 +9,11 @@ import smtplib
 @app.route('/')
 def main_page():
     return render_template('login.html')
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect('/')
 
 @app.route('/check_login', methods=["POST"])
 def validate_login_info():
@@ -48,7 +54,10 @@ def login_page_after_register():
 
 @app.route('/dashboard')
 def user_dashborad():
-    return render_template('dashboard.html')
+    if session:
+        return render_template('dashboard.html')
+    else:
+        return redirect('/')
 
 @app.route('/employees')
 def employees():
@@ -93,11 +102,37 @@ def add_empl_to_db():
         "reg_code":request.form['reg_code']
     }
 
-    # message = "You have been added to La Donna Bridal Atelier's employees list."
-    # server = smtplib.SMTP("smtp.gmail.com", 587)
-    # server.starttls()
-    # server.login("noormusheer@gmail.com", "PasswordHere")
-    # server.sendmail("noormusheer@gmail.com", "noormusheer@aol.com", message)
+
+    message="You have been added. Please register and set up a password"
+    server = smtplib.SMTP("smtp.gmail.com", 587)
+    server.starttls()
+    server.login("noormusheer@gmail.com", "cdgiknbwsiejkgve")
+    server.sendmail("noormusheer@gmail.com", "noormusheer@aol.com", message)
 
     employee.Employee.add_employee_to_db(ee_data)
     return redirect('/employees')
+
+@app.route('/my_account')
+def employee_account_info():
+    id = session['id']
+    my_acct_info =  employee.Employee.get_employee_by_id(id)
+    return render_template('employee_info.html', my_info = my_acct_info)
+
+@app.route('/employee_update/<int:id>', methods=['POST'])
+def update_employee_info(id):
+    data={
+        "id":id, 
+        "email":request.form['email'],
+        "phone":request.form['phone'],
+        "addr_street":request.form['addr_street'],
+        "addr_city":request.form['addr_city'],
+        "addr_state":request.form['addr_state'],
+        "addr_zip":request.form['addr_zip'],
+    }
+    employee.Employee.update_employee(data)
+    return redirect('/my_account')
+
+@app.route('/ee_info_mngr/<int:id>')
+def view_ee_info(id):
+    ee_data = employee.Employee.get_employee_by_id(id)
+    return render_template('employee_info_mngr.html', ee_data = ee_data)

@@ -9,8 +9,8 @@
     width:50%;
 }
 .measurement-container{
-    border: 1px solid #AE924F;
     padding-bottom:15px;
+    width:50%;
 }
 
 .header-row{
@@ -23,3 +23,30 @@ a{
     text-decoration: none;
     color: #AE924F;
 }
+
+.btn-outline, .form-control{
+    border-color:#AE924F;
+    box-shadow: 2px 2px 2px #AE924F;
+}   
+
+
+.order-number-col{
+    width:5%;
+}
+.notes-col{
+    width:50%;
+}
+
+.btn{
+    width:25%;
+    margin-top: 3%;
+}
+.col-style{
+    font-style: italic;
+}
+
+.crossout{
+    text-decoration: line-through;
+}
+
+

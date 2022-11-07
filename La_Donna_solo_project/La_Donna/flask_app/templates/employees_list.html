@@ -19,11 +19,17 @@
 
         <div class="row navigation-row">
             <div class="col-8"></div>
-            <div class="col-2"><a href="/new_employee"><button>Add A New Employee</button></a></div> 
-            <div class="col-2"><a href="/dashboard">Home</a></div> 
+            <div class="col-2"><h5><a href="/dashboard">Home</a></h5></div>
+            <div class="col-2"><h5><a href="/logout">Logout</a></h5></div>
         </div>
         <div class="row main-body-row">
-            <table>
+            <table class="table table-striped">
+                <div class="row">
+                    <div class="col-4"><h4>Employees</h4></div>
+                    <div class="col-8">
+                    <a href="/new_employee"><button class="btn btn-outline">Add A New Employee</button></a>
+                    </div>
+                </div>
                 <thead>
                     <tr>
                         <th>First Name</th>
@@ -44,7 +50,7 @@
                         <td>{{employee.email}}</td>
                         <td>{{employee.phone}}</td>
                         <td>{{employee.hire_date}}</td>
-                        <td>View/Edit  |  Archive</td>
+                        <td><a href="/ee_info_mngr/{{employee.id}}">View/Edit</a> |  Archive</td>
                     </tr>
                     {%endfor%}
                 </tbody>

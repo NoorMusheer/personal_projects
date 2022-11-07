@@ -19,34 +19,61 @@
 
         <div class="row navigation-row">
             <div class="col-8"></div>
-            <div class="col-2"><a href="/task_new"><button>Add A New Task</button></a></div> 
-            <div class="col-2"><a href="/dashboard">Home</a></div> 
+            <div class="col-2"><h5><a href="/dashboard">Home</a></h5></div>
+            <div class="col-2"><h5><a href="/logout">Logout</a></h5></div>
         </div>
         <div class="row main-body-row">
-            <table>
+            <table class="table table-striped">
+                <div class="row">
+                    <div class="col-4"><h4>Active Tasks</h4></div>
+                    <div class="col-8">
+                    <a href="/task_new"><button class="btn btn-outline">Add A New Task</button></a>
+                    </div>
+                </div>
                 <thead>
                     <tr>
-                        <th>Notes</th>
-                        <th>Date Due</th>
-                        <th>Actions</th>
+                        <th class="col-89">Notes</th>
+                        <th class="col-2">Date Due</th>
+                        <th class="col-2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {%for task in all_tasks%}
+                    {%for task in active_tasks%}
                     <tr>
                         <td>{{task.notes}}</td>
                         <td>{{task.date_due}}</td>
-                        <td>View/Edit  |  Archive</td>
+                        <td><a href="/task_edit/{{task.id}}">View/Edit</a>   |   
+                            <a href="/task_complete/{{task.id}}">Completed</a>
+                        </td>
                     </tr>
                     {%endfor%}
                 </tbody>
             </table>
         </div>
-
-
-
-
-
+        <div class="row row-spacer" style="height:500px"></div>
+            <table class="table table-striped">
+                <div class="row">
+                    <div class="col-4"><h4>Completed Tasks</h4></div>
+                    <div class="col-8"></div>
+                </div>
+                <thead>
+                    <tr>
+                        <th class="col-8">Notes</th>
+                        <th class="col-2">Date Due</th>
+                        <th class="col-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for tasks in completed_tasks%}
+                    <tr>
+                        <td class="crossout">{{tasks.notes}}</td>
+                        <td class="crossout">{{tasks.date_due}}</td>
+                        <td><a href="/task_edit/{{tasks.id}}">View</a>
+                        </td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
     </div>
 </body>
 </html>

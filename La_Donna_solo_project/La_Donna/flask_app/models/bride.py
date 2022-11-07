@@ -33,3 +33,12 @@ class Bride:
         result = connectToMySQL(cls.DB).query_db(query, data)
         return result[0]
 
+    @classmethod
+    def update_bride_by_id(cls, data):
+        query ="""
+            UPDATE brides
+            SET first_name = %(first_name)s, last_name=%(last_name)s, email=%(email)s, phone=%(phone)s, wedding_date=%(wedding_date)s, other=%(notes)s, updated_at=NOW()
+            WHERE id = %(id)s ;
+                """
+        return connectToMySQL(cls.DB).query_db(query, data)
+

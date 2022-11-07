@@ -35,6 +35,15 @@ class Employee:
         return connectToMySQL(cls.DB).query_db(query, ee_data)
 
     @classmethod
+    def get_employee_by_id(cls, id):
+        data ={
+            "id":id
+        }
+        query = "SELECT * FROM employees WHERE id = %(id)s ;"
+        result = connectToMySQL(cls.DB).query_db(query, data)
+        return result[0]
+
+    @classmethod
     def get_employee_by_email(cls, ee_data):
         query = "SELECT * FROM employees WHERE email = %(email)s;"
         result = connectToMySQL(cls.DB).query_db(query,ee_data)
@@ -89,3 +98,12 @@ class Employee:
     def reset_pw_request_message(data):
         flash("* Thank you. If your email address is found in our system, an email message will be sent to it with a link to where you can reset your password.", "update_pw")
         return True
+
+    @classmethod
+    def update_employee(cls, data):
+        query = """
+            UPDATE employees
+            SET email=%(email)s, phone=%(phone)s, addr_street=%(addr_street)s, addr_city=%(addr_city)s, addr_state=%(addr_state)s, addr_zip=%(addr_zip)s, updated_at=NOW() 
+            WHERE id = %(id)s; 
+        """
+        return connectToMySQL(cls.DB).query_db(query, data)

@@ -19,18 +19,24 @@
 
         <div class="row navigation-row">
             <div class="col-8"></div>
-            <div class="col-2"><a href="/new_order"><button>Add A New Order</button></a></div> 
-            <div class="col-2"><a href="/dashboard">Home</a></div> 
+            <div class="col-2"><h5><a href="/dashboard">Home</a></h5></div>
+            <div class="col-2"><h5><a href="/logout">Logout</a></h5></div>
+
         </div>
         <div class="row main-body-row">
-            <table>
-                <div class="row"><h4>Active Orders</h4></div>
+            <table class="table table-striped">
+                <div class="row">
+                    <div class="col-4"><h4>Active Orders</h4></div>
+                    <div class="col-8">
+                    <a href="/new_order"><button class="btn btn-outline">Add A New Order</button></a>
+                    </div>
+                </div>
                 <thead>
                     <tr>
-                        <th>Order No.</th>
+                        <th class="order-number-col">Order No.</th>
                         <th>Bride</th>
                         <th>Dress</th>
-                        <th>Order Notes</th>
+                        <th class="notes-col">Order Notes</th>
                         <th>Taken By</th>
                         <th>Actions</th>
                     </tr>
@@ -39,24 +45,24 @@
                     {%for active in active_orders%}
                     <tr>
                         <td>{{active.id}}</td>
-                        <td>{{active.bride_id}}</td>
-                        <td>{{active.dress_id}}</td>
-                        <td>{{active.notes}}</td>
-                        <td>{{active.employee_id}}</td>
+                        <td>{{active.brfname}} {{active.brlname}}</td>
+                        <td>{{active.name}}</td>
+                        <td>{{active.order_notes}}</td>
+                        <td>{{active.taken_by}}</td>
                         <td><a href="/orders_edit/{{active.id}}">View/Edit</a>  |  <a href="/archive_order/{{active.id}}">Archive</a></td>
                     </tr>
                     {%endfor%}
                 </tbody>
             </table>
-<div class="row row-spacer" style="height:500px"></div>
-            <table>
+        <div class="row row-spacer" style="height:500px"></div>
+            <table class="table table-striped">
                 <div class="row"><h4>Archived Orders</h4>(will auto-delete after being archived for 12 months)</div>
                 <thead>
                     <tr>
-                        <th>Order No.</th>
+                        <th class="order-number-col">Order No.</th>
                         <th>Bride</th>
                         <th>Dress</th>
-                        <th>Order Notes</th>
+                        <th class="notes-col">Order Notes</th>
                         <th>Taken By</th>
                         <th>Actions</th>
                     </tr>
@@ -65,22 +71,16 @@
                     {%for archived in archived_orders%}
                     <tr>
                         <td>{{archived.id}}</td>
-                        <td>{{archived.bride_id}}</td>
-                        <td>{{archived.dress_id}}</td>
-                        <td>{{archived.notes}}</td>
-                        <td>{{archived.employee_id}}</td>
-                        <td>View</td>
+                        <td>{{archived.brfname}} {{archived.brlname}}</td>
+                        <td>{{archived.name}}</td>
+                        <td>{{archived.order_notes}}</td>
+                        <td>{{archived.taken_by}}</td>
+                        <td><a href="/orders_edit/{{archived.id}}">View</a></td>
                     </tr>
                     {%endfor%}
                 </tbody>
             </table>
-
         </div>
-
-
-
-
-
     </div>
 </body>
 </html>

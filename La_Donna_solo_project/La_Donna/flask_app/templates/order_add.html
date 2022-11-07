@@ -17,43 +17,59 @@
             <div class="col-2">Employees Only</div>
         </div>
         <div class="row navigation-row">
-            <div class="col-10"></div>
-            <div class="col-2">
-                <a href="/dashboard">Home</a>
-            </div>
+            <div class="col-8"></div>
+            <div class="col-2"><h5><a href="/dashboard">Home</a></h5></div>
+            <div class="col-2"><h5><a href="/logout">Logout</a></h5></div>
         </div>
         <div class="row main-body-row">
             <form action="/order_add" method="POST">
                 <div class="container measurement-container">
+                    <h5>Add A New Order</h5>
+                </div>
+
+                <div class="container measurement-container">
                     <h5>Customer Info</h5>
-                    <div class="form-input">
-                        <label>Bride:</label>
-                        <input type="text" name="bride_id">
+                    <div class="form-input form-group row">
+                        <label class="col-sm-3 col-form-label">Bride:</label>
+                        <div class="col-sm-9">
+                        <input type="text" class="form-control" name="bride_id">
+                        </div>
                     </div>
-                    <div class="form-input">
-                        <label>Dress:</label>
-                        <input type="text" name="dress_id">
+                    <div class="form-input form-group row">
+                        <label class="col-sm-3 col-form-label">Dress:</label>
+                        <div class="col-sm-9">
+                        <input type="text" class="form-control" name="dress_id">
+                        </div>
                     </div>
                 </div>
                 <div class="container measurement-container">
                     <h5>Measurements</h5>
-                    <div class="form-input">
-                        <label>Height:</label>
-                        <input type="text" name="m_height">
+                    <div class="form-input form-group row">
+                        <label class="col-sm-3 col-form-label">Height:</label>
+                        <div class="col-sm-9">
+                        <input type="text" class="form-control" name="m_height">
+                        </div>
                     </div>
-                    <div class="form-input">
-                        <label>Waist:</label>
-                        <input type="text" name="m_waist">
+                    <div class="form-input form-group row">
+                        <label class="col-sm-3 col-form-label">Waist:</label>
+                        <div class="col-sm-9">
+                        <input type="text" class="form-control" name="m_waist">
+                        </div>
                     </div>
                 </div>
                 <div class="container measurement-container">
-                    <div class="form-input">
-                        <label>Order Notes:</label>
-                        <textarea name="notes" id="to_do_notes" rows="6" cols="80"></textarea>
+                    <div class="form-input form-group row">
+                        <label class="col-sm-3 col-form-label">Order Notes:</label>
+                        <div class="col-sm-9">
+                        <textarea class="form-control" name="notes" id="to_do_notes" rows="6" cols="80"></textarea>
+                        </div>
                     </div>
                 </div>
-
-                <input type="submit" value="Add">
+                <div class="container measurement-container">
+                    <div class="form-group row">
+                        <input type="submit" value="Add Order" class="btn btn-outline">
+                    </div>
+                </div>
             </form>
         </div>
     </div>

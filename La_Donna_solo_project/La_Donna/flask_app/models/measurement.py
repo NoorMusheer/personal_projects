@@ -28,3 +28,12 @@ class Measurement:
         query = "SELECT * FROM measurements WHERE bride_id = %(id)s ; "
         result =  connectToMySQL(cls.DB).query_db(query, data)
         return result[0]
+
+    @classmethod
+    def update_measurements(cls, m_data):
+        query="""
+            UPDATE measurements
+            SET bride_id = %(bride_id)s, height=%(m_height)s, waist=%(m_waist)s, updated_at=NOW()
+            WHERE id = %(m_id)s ;
+        """
+        return connectToMySQL(cls.DB).query_db(query,m_data)

@@ -19,34 +19,71 @@
 
         <div class="row navigation-row">
             <div class="col-8"></div>
-            <div class="col-2"><a href="/new_dress"><button>Add A New Dress</button></a></div> 
-            <div class="col-2"><a href="/dashboard">Home</a></div> 
+            <div class="col-2"><h5><a href="/dashboard">Home</a></h5></div>
+            <div class="col-2"><h5><a href="/logout">Logout</a></h5></div>
         </div>
         <div class="row main-body-row">
-            <table>
+            <table class="table table-striped tbl">
+                <div class="row">
+                    <div class="col-4"><h4>Dresses</h4></div>
+                    <div class="col-8">
+                    <a href="/new_dress"><button class="btn btn-outline">Add A New Dress</button></a>
+                    </div>
+                </div>
+
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Style</th>
-                        <th>Color</th>
-                        <th>Fabric</th>
-                        <th>Notes</th>
-                        <th>Actions</th>
+                        <th class="col-1">Name</th>
+                        <th class="col-1 col-style">Style</th>
+                        <th class="col-1">Color</th>
+                        <th class="col-1">Fabric</th>
+                        <th class="col-4">Notes</th>
+                        <th class="col-2">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {%for dress in all_dresses%}
+                    {%for dress in active_dresses%}
                     <tr>
                         <td>{{dress.name}}</td>
-                        <td>{{dress.style}}</td>
+                        <td class="col-1 col-style">{{dress.style}}</td>
                         <td>{{dress.color}}</td>
                         <td>{{dress.fabric}}</td>
                         <td>{{dress.other}}</td>
-                        <td>View/Edit  |  Archive</td>
+                        <td><a href="/dress_edit/{{dress.id}}">View/Edit</a> |  
+                            <a href="/dress_archive/{{dress.id}}">Archive</a>
+                        </td>
                     </tr>
                     {%endfor%}
                 </tbody>
             </table>
+        <div class="row row-spacer" style="height:500px"></div>
+            <table class="table table-striped">
+                <div class="row"><h4>Archived Dresses</h4>(will auto-delete after being archived for 12 months)</div>
+                <thead>
+                    <tr>
+                        <th class="col-1">Name</th>
+                        <th class="col-1 col-style">Style</th>
+                        <th class="col-1">Color</th>
+                        <th class="col-1">Fabric</th>
+                        <th class="col-4">Notes</th>
+                        <th class="col-1">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for archived in archived_dresses%}
+                    <tr>
+                        <td>{{archived.name}}</td>
+                        <td class="col-1 col-style">{{archived.style}}</td>
+                        <td>{{archived.color}}</td>
+                        <td>{{archived.fabric}}</td>
+                        <td>{{archived.notes}}</td>
+                        <td><a href="/dress_edit/{{archived.id}}">View</a></td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+
         </div>
 
 

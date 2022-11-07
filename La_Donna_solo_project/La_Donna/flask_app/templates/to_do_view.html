@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <div class="row header-row">
-            <div class ="col-6"><img src="./static/imgs/LaDonna_Header.png" alt="La Donna Logo" class="header-logo-img"></div>
+            <div class ="col-6"><img src="/static/imgs/LaDonna_Header.png" alt="La Donna Logo" class="header-logo-img"></div>
             <div class="col-4"></div>
             <div class="col-2">Employees Only</div>
         </div>
@@ -22,28 +22,24 @@
             <div class="col-2"><h5><a href="/logout">Logout</a></h5></div>
         </div>
         <div class="row main-body-row">
-            <form action="/task_add" method="POST">
+            <form action="/task_update/{{task_info.id}}" method="POST">
                 <div class="container measurement-container">
-                    <div class="container measurement-container">
-                        <h5>Add A New Task</h5>
-                    </div>
-    
                     <div class="form-input form-group row">
                         <label class="col-sm-2 col-form-label">Notes:</label>
                         <div class="col-sm-10">
-                        <textarea class="form-control" name="notes" id="to_do_notes" rows="6" cols="80"></textarea>
+                        <textarea class="form-control" name="notes" id="to_do_notes" rows="6" cols="80">{{task_info.notes}}</textarea>
                         </div>
                     </div>
                     <div class="form-input form-group row">
                         <label class="col-sm-2 col-form-label">Due Date:</label>
                         <div class="col-sm-10">
-                        <input type="date" class="form-control" name="date_due">
+                        <input type="date" class="form-control" name="date_due" value="{{task_info.date_due}}">
                         </div>
                     </div>
                 </div>
                 <div class="container measurement-container">
                     <div class="form-group row">
-                        <input type="submit" value="Add Task" class="btn btn-outline">
+                        <input type="submit" value="Update Task" class="btn btn-outline">
                     </div>
                 </div>
             </form>

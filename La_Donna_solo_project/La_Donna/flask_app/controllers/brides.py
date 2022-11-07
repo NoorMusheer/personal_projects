@@ -29,3 +29,17 @@ def edit_bride_page(id):
     bride_info = bride.Bride.get_bride_by_id(id)
     return render_template('brides_edit.html', bride = bride_info)
 
+@app.route('/bride_update/<int:id>', methods=['POST'])
+def update_bride_info(id):
+    data={
+        "id":id,
+        "first_name":request.form['fname'],
+        "last_name":request.form['lname'],
+        "email":request.form['email'],
+        "phone":request.form['phone'],
+        "wedding_date":request.form['wedding_date'],
+        "notes":request.form['other']
+    }
+    bride.Bride.update_bride_by_id(data)
+    return redirect('/brides')
+

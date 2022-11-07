@@ -19,15 +19,14 @@
         </div>
         <div class="row navigation-row">
             <div class="col-10"></div>
-            <div class="col-2">
-                <a href="/">Home</a>
-            </div>
+            <div class="col-1"><h5><a href="/dashboard">Home</a></h5></div>
+            <div class="col-1"><h5><a href="/logout">Logout</a></h5></div>
         </div>
 
         <div class="main-body-row row">
             <!-- ----COLUMN 1; LOGIN FORM ---- -->
             <div class="col-6">
-                <h2>Please create a new password below. </h2>
+                <h2>Request a password update link.   </h2>
                 <form action="/forgot_login" method="POST">
                     <div>
                         {% with messages = get_flashed_messages(category_filter=["update_pw"]) %}
@@ -36,14 +35,15 @@
                                 <p>{{ message | safe }}</p>
                         {%endfor%}{%endif%}{%endwith%}
                     </div>
-                    <div class="input-section">
-                        <label>Please enter your E-mail:</label>
-                        <input type="text" name="email">
+                    <div class="input-section form-group row">
+                        <label class="col-sm-3 col-form-label">E-mail:</label>
+                        <div class="col-sm-9">
+                        <input type="text" class="form-control" name="email">
+                        </div>
                     </div>
                     
-
-                    <div class="input-section">
-                        <input type="submit" value = "Login">
+                    <div class="form-group row">
+                        <input type="submit" value="Request" class="btn btn-outline">
                     </div>
                     <div class="input-section">
                     </div>

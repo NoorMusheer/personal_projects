@@ -18,33 +18,51 @@
         </div>
         <div class="row navigation-row">
             <div class="col-10"></div>
-            <div class="col-2">
-                <a href="/dashboard">Home</a>
-            </div>
+            <div class="col-1"><h5><a href="/dashboard">Home</a></h5></div>
+            <div class="col-1"><h5><a href="/logout">Logout</a></h5></div>
         </div>
         <div class="row main-body-row">
             <form action="/dress_add" method="POST">
-                <div class="form-input">
-                    <label>Name:</label>
-                    <input type="text" name="dress_name">
-                </div> 
-                <div class="form-input">
-                    <label>Style:</label>
-                    <input type="text" name="style">
+                <div class="container measurement-container">
+                    <h5>Add A New Dress</h5>
                 </div>
-                <div class="form-input">
-                    <label>Color:</label>
-                    <input type="text" name="color">
+                <div class="container measurement-container">
+                    <div class="form-input form-group row">
+                        <label class="col-sm-2 col-form-label">Name:</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" name="dress_name">
+                        </div>
+                    </div> 
+                    <div class="form-input form-group row">
+                        <label class="col-sm-2 col-form-label">Style:</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" name="style">
+                        </div>
+                    </div>
+                    <div class="form-input form-group row">
+                        <label class="col-sm-2 col-form-label">Color:</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" name="color">
+                        </div>
+                    </div>
+                    <div class="form-input form-group row">
+                        <label class="col-sm-2 col-form-label">Fabric:</label>
+                        <div class="col-sm-10">
+                        <input type="text" class="form-control" name="fabric">
+                        </div>
+                    </div>
+                    <div class="form-input form-group row">
+                        <label class="col-sm-2 col-form-label">Notes:</label>
+                        <div class="col-sm-10">
+                        <textarea class="form-control" name="other" id="dress_notes" rows="6" cols="80"></textarea>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-input">
-                    <label>Fabric:</label>
-                    <input type="text" name="fabric">
+                <div class="container measurement-container">
+                    <div class="form-group row">
+                        <input type="submit" value="Add Dress" class="btn btn-outline">
+                    </div>
                 </div>
-                <div class="form-input">
-                    <label>Notes:</label>
-                    <textarea name="other" id="dress_notes" rows="6" cols="80"></textarea>
-                </div>
-                <input type="submit" value="Add">
             </form>
         </div>
     </div>
