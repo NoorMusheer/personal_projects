@@ -45,7 +45,8 @@ def update_dress_info(id):
         "style":request.form['style'],
         "color":request.form['color'],
         "fabric":request.form['fabric'],
-        "other":request.form['other']
+        "other":request.form['other'],
+        "status":"active"
     }
     dress.Dress.update_dress_info(updated_dress_data)
     return redirect('/dresses')

@@ -42,7 +42,7 @@ class Dress:
     def update_dress_info(cls, updated_dress_data):
         query = """
                 UPDATE dresses
-                SET name = %(name)s, style=%(style)s, color=%(color)s, fabric=%(fabric)s, other=%(other)s, updated_at=NOW()
+                SET name = %(name)s, style=%(style)s, color=%(color)s, fabric=%(fabric)s, other=%(other)s, status=%(status)s, updated_at=NOW()
                 WHERE id = %(id)s;
                 """
         return connectToMySQL(cls.DB).query_db(query, updated_dress_data)

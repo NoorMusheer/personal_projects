@@ -1,10 +1,12 @@
 from flask_app import app
 from flask_app.models import bride, dress, employee, measurement, order
 from flask import render_template, redirect, request, session
-from flask_mail import Mail
+from flask_mail import Mail, Message
 import random
 import string
 import smtplib
+
+mail = Mail(app)
 
 @app.route('/')
 def main_page():
@@ -102,12 +104,17 @@ def add_empl_to_db():
         "reg_code":request.form['reg_code']
     }
 
+    msg = Message("Welcome to La Donna Bridal %s" % request.form['fname'], sender="noreply@laDonna.com", recipients = ["NoorMusheer@aol.com"])
+    msg.html = """
+    <b>Welcome!</b>
+    We are excited to have you start. <br>
+    Please follow the link below to register and set up your account password.<br>
 
-    message="You have been added. Please register and set up a password"
-    server = smtplib.SMTP("smtp.gmail.com", 587)
-    server.starttls()
-    server.login("noormusheer@gmail.com", "cdgiknbwsiejkgve")
-    server.sendmail("noormusheer@gmail.com", "noormusheer@aol.com", message)
+    Your registration code is:  %r <br>
+    <a href="http://localhost:5000/">Click Here to Register</a>
+    """ % request.form['reg_code']
+    
+    mail.send(msg)
 
     employee.Employee.add_employee_to_db(ee_data)
     return redirect('/employees')
